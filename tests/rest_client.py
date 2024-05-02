@@ -15,7 +15,7 @@ cid = str(rep.json())
 print('cid: %s' % rep.json())
 
 
-def hello(cid: str):
+def state_cb(cid: str):
     ws_url = url.replace('http', 'ws')
     print(ws_url)
     ws = websocket.create_connection(ws_url + '/ws/' + cid)
@@ -26,7 +26,7 @@ def hello(cid: str):
 
 
 print('before ws')
-t = threading.Thread(target=hello, args=[cid])
+t = threading.Thread(target=state_cb, args=[cid])
 t.daemon = True
 t.start()
 print('after ws')

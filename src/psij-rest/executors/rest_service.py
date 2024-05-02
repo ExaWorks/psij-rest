@@ -84,12 +84,12 @@ class RestServiceJobExecutor(JobExecutor):
         t.start()
 
     def _state_listener(self) -> None:
-        """thrtead to listen for on job state update messages on the websocket.
+        """thread to listen for on job state update messages on the websocket.
 
         Update the status of the psij.Job.
         """
-        if 'http://' in self.url:
-            ws_url = self.url.replace('http://', 'ws://')
+        if 'https://' in self.url:
+            ws_url = self.url.replace('https://', 'ws://')
         else:
             ws_url = self.url.replace('http://', 'ws://')
 
