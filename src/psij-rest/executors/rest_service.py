@@ -90,10 +90,10 @@ class RestServiceJobExecutor(JobExecutor):
         """
         if 'https://' in self.url:
             ws_url = self.url.replace('https://', 'ws://')
-        else:
+        elif 'http://' in self.url:
             ws_url = self.url.replace('http://', 'ws://')
-
-        assert ws_url.startswith('ws://')
+        else:
+            raise ValueError('expected `http://` or `https://` as url schema')
 
         ws = websocket.create_connection(ws_url + '/ws/' + self._cid)
         while True:
